@@ -82,8 +82,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         // Initialize the player view.
         mPlayerView = (SimpleExoPlayerView) findViewById(R.id.playerView);
-
-
         boolean isNewGame = !getIntent().hasExtra(REMAINING_SONGS_KEY);
 
         // If it's a new game, set the current score to 0 and load all samples.
@@ -157,11 +155,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                                 PlaybackStateCompat.ACTION_PLAY_PAUSE);
 
         mMediaSession.setPlaybackState(mStateBuilder.build());
-
-
         // MySessionCallback has methods that handle callbacks from a media controller.
         mMediaSession.setCallback(new MySessionCallback());
-
         // Start the Media Session since the activity is active.
         mMediaSession.setActive(true);
 
@@ -202,12 +197,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             icon = R.drawable.exo_controls_play;
             play_pause = getString(R.string.play);
         }
-
         NotificationCompat.Action playPauseAction = new NotificationCompat.Action(
                 icon, play_pause,
                 MediaButtonReceiver.buildMediaButtonPendingIntent(this,
                         PlaybackStateCompat.ACTION_PLAY_PAUSE));
-
+        
         NotificationCompat.Action restartAction = new android.support.v4.app.NotificationCompat
                 .Action(R.drawable.exo_controls_previous, getString(R.string.restart),
                 MediaButtonReceiver.buildMediaButtonPendingIntent
